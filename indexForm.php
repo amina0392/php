@@ -26,7 +26,7 @@
         $email = $_GET["email"];
         $prenom = $_GET["prenom"];
        
-        // Vérifier la longueur du nom du formulaire
+        // strlen pour la vérification la longueur du nom du formulaire
         if (strlen($nom) >= 3) {
             // Le nom du formulaire a au moins 3 caractères
             echo "Le nom est correctement saisi.<br>";
@@ -35,6 +35,7 @@
             echo "Le nom du formulaire doit comporter au moins 3 caractères.<br>";
         }
     }
+    // strpos pour vérifier si le caractère @ est présent dans le champ email
     if (strpos($email, "@") !== false) {
         echo "L'adresse e-mail contient un '@'.<br>";
     } else {
