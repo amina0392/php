@@ -13,33 +13,35 @@
 
 
     <?php
+    // Si tous les champs sont saisie on affiche la eponse
     if (isset($_GET["nom"])) {
         if (!empty($_GET["genre"]) && ($_GET["nom"]) && ($_GET["prenom"]) && ($_GET["email"]) && ($_GET["message"])) {
-            $answer = "Bonjour " . $_GET["nom"] . " ! ";
-        } else $answer = "Aucune valeur saisie.";
-    } else $answer = "Utilisation incorrecte.";
+            $reponse = "Bonjour " . $_GET["nom"] . " ! ";
+        } else $reponse = "Aucune valeur saisie.";
+    } else $reponse = "Utilisation incorrecte.";
 
-    // Supposons que le nom du formulaire soit passé via la méthode GET
+    // Si les champs du formulaire sont passés via la méthode GET
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
-        // Récupérer le nom du formulaire depuis le formulaire
+        // Récupérer les champs du formulaire depuis le formulaire
         $nom = $_GET["nom"];
         $email = $_GET["email"];
         $prenom = $_GET["prenom"];
-       
-        // strlen pour la vérification la longueur du nom du formulaire
-        if (strlen($nom) >= 3) {
-            // Le nom du formulaire a au moins 3 caractères
-            echo "Le nom est correctement saisi.<br>";
+        $message = $_GET["message"];
+        
+        // strlen pour la vérification la longueur du nom et du message du formulaire
+        // strpos pour vérifier si le caractère @ est présent dans le champ email
+        if ((strlen($nom) >= 3) && (strpos($email, "@") !== false) && (strlen($message) >= 2) ) {
+            // Après vérification tous les champs sont saisis suivant les conditions ci-dessus
+            echo "Les champs sont correctement saisis.</p>";
         } else {
-            // Le nom du formulaire ne comporte pas au moins 3 caractères
-            echo "Le nom du formulaire doit comporter au moins 3 caractères.<br>";
+            // Sinon, le message suivant s'affiche
+            echo "<ul ><strong>Veuillez vérifier que</strong> : 
+            <li>Le nom du formulaire comporte au moins 3 caractères.</li>
+            <li>L'adresse e-mail contient bien un '@'.</li>
+            <li>Le nombre de caractère de votre message soit compris entre 2 et 200.</li>
+            </ul>
+            ";
         }
-    }
-    // strpos pour vérifier si le caractère @ est présent dans le champ email
-    if (strpos($email, "@") !== false) {
-        echo "L'adresse e-mail contient un '@'.<br>";
-    } else {
-        echo "L'adresse e-mail ne contient pas de '@'.<br>";
     }
 
     // Fonction pour formater le nom et le prénom
@@ -53,13 +55,15 @@
     $emailFormate = strtolower($email);
     $nomFormate = formaterNomPrenom($nom);
     $prenomFormate = formaterNomPrenom($prenom);
+    
     ?>
 
-    <p><?php echo $answer ?></p>
+    <p><?php echo $reponse ?></p>
     <!-- Afficher la fiche formatée -->
     <p><?php echo "Nom: $nomFormate <br>" ?></p>
     <p><?php echo "Prénom: $prenomFormate <br>" ?></p>
-    <p><?php echo "Email: $emailFormate <br>"?></p>
+    <p><?php echo "Email: $emailFormate <br>" ?></p>
+    <p><?php echo "Message: $emailFormate <br>" ?></p>
 
 
 </body>
