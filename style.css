@@ -4,17 +4,19 @@ body {
     
 }
 
-form {
+form{
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     width: 100%;
+    margin-top: 10px;
 }
 
 h2 {
     color: #333;
+    text-align: center;
 }
 
 label {
@@ -41,12 +43,14 @@ textarea {
 input[type="checkbox"] {
     margin-right: 5px;
     vertical-align: middle;
+  
 }
 
 input[type="submit"] {
     background-color: #4caf50;
     color: #fff;
     cursor: pointer;
+   
 }
 
 input[type="submit"]:hover {
@@ -63,13 +67,31 @@ p {
     background-color: beige;
     font-size: 1rem;
 }
-#formulaire{
-   
-    margin-bottom: 10px;
-}
+
+
 .correct{
     color: green;
 }
 .erreur{
+    text-align: center;
+    margin-top: 16px;
     color: red;
+}
+li{
+    list-style-type: none;
+}
+#fiche{
+    border: solid 3px;
+    color: burlywood;
+}
+#image{
+    display: flex;
+}
+#contenu{
+    display: flex;
+    justify-content: space-around;
+}
+#image img{
+    width: 100%;
+
 }
